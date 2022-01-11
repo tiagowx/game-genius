@@ -1,5 +1,5 @@
 let order = [];
-let clickedOerder = [];
+let clickedOrder = [];
 let score = 0;
 
 // 0 = verde
@@ -15,7 +15,7 @@ const yellow = document.querySelector('.yellow');
 let shoffleOrder = () => {
     let colorOrder = Math.floor(Math.random() * 4);
     order[order.length] = colorOrder;
-    clickedOerder = [];
+    clickedOrder = [];
 
     for (let i in order) {
         let elementColor = createElement(order[i]);
@@ -23,6 +23,7 @@ let shoffleOrder = () => {
     }
 }
 
+// acende a próxima cor
 let lightColor = (element, number) => {
     number = number * 500;
     setTimeout(() => {
@@ -30,6 +31,30 @@ let lightColor = (element, number) => {
     }, number - 250)
     setTimeout(() => {
         element.classList.remove('selected');
+    });
+}
 
-    }, number - 250)
+// verifica se a ordem de escolha esta correta
+let checkOrder = () => {
+    for (let i in clickedOrder) {
+        if (clickedOrder[i] != order[i]) {
+            lose();
+            break;
+        }
+    }
+    if (clickedOrder.length == order.length) {
+        alert(`Pontuação: ${score} \n Você acertou! Iniciando o próximo nível!`);
+        nextLevel();
+    }
+}
+
+// escolha do usuário
+let click = (color) => {
+    clickOrder[clickedOrder.length] = color;
+    createColorElement(color).classList.add('selected');
+
+    setTimeout(() => {
+        createColorElement(color).classList.remove('selected');
+    });
+    checkOrder();
 }
