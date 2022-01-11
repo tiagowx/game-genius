@@ -48,3 +48,7 @@ body {
 .selected {
     opacity: 0.75;
 }
+
+.no-selected {
+    opacity: 1;
+}

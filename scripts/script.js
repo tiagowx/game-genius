@@ -27,11 +27,13 @@ let shoffleOrder = () => {
 let lightColor = (element, number) => {
     number = number * 500;
     setTimeout(() => {
+        element.classList.remove('no-selected');
         element.classList.add('selected');
-    }, number - 250)
+    }, number + 250)
     setTimeout(() => {
         element.classList.remove('selected');
-    });
+        element.classList.add('no-selected');
+    }, number + 500);
 }
 
 // verifica se a ordem de escolha esta correta
@@ -90,7 +92,7 @@ let gameOver = () => {
 }
 
 let playGame = () => {
-    alert("Bem vindo ao GÊnesis! Iniciando novo jogo.");
+    alert("Bem vindo ao Gênesis! Iniciando novo jogo.");
     score = 0;
     nextLevel();
 }
